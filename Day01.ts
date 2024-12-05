@@ -1,4 +1,4 @@
-import * as fs from "fs";
+import { runner } from "./lib";
 
 const parseFile = (input: string) => {
   const left: number[] = [];
@@ -50,20 +50,4 @@ const part2 = (input: string) => {
   console.log(total);
 };
 
-const fileNumber = process.argv[2];
-const part = process.argv[3];
-if (!fileNumber || !part) {
-  throw new Error("Usage: node Day01.ts <filenumber> <part>");
-}
-
-const file = fs.openSync(`day1/input${fileNumber}.txt`, "r");
-const input = fs.readFileSync(file, "utf8");
-fs.closeSync(file);
-
-if (part === "1") {
-  part1(input);
-} else if (part === "2") {
-  part2(input);
-} else {
-  throw new Error("Invalid part");
-}
+runner("day01", part1, part2);
